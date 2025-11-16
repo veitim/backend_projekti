@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Customers</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Customers</h1>
+    <table class="table table-striped">
+		<tr>
+		    <th>First Name</th>
+		    <th>Last Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th sec:authorize="hasAuthority('ADMIN')"> </th>
+		</tr>  
+    	<tr th:each = "customer : ${customers}">
+    		<td th:text="${customer.firstname}"></td>
+            <td th:text="${customer.lastname}"></td>
+            <td th:text="${customer.email}"></td>
+            <td th:text="${customer.address}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/customers/edit/{id}(id=${customer.customer_id})}">Edit</a></td>  
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/customers/delete/{id}(id=${customer.customer_id})}" class="btn btn-danger">Delete</a></td>		
+    	</tr>
+     </table>
+      <a href="/customers/add" class="btn btn-success">Add Customer</a>      	
+</body>
+</html>

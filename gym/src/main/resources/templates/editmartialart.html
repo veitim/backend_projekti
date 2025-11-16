@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Martial Art</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Edit Martial Art</h1>
+	<div>
+		<form th:object="${martialart}" th:action="@{../save}" action="#" method="post">
+            <input type="hidden" id="martialart_id" th:field="*{martialart_id}" />
+		  	<label for="name">Name</label>
+			<input type="text" id="name" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="coachlist">Coach</label>
+			 <select id="coachlist" th:field="*{coach}" class="form-control">
+       			<option th:each="coach: ${coaches}" th:value="${coach.coach_id}" th:text="${coach.firstname + ' ' + coach.lastname}"></option>
+    		</select>
+
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>

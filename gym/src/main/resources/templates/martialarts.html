@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Martial Arts</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Martial Arts</h1>
+    <table class="table table-striped">
+		<tr>
+		    <th>Name</th>
+		    <th>Head Coach</th>
+            <th sec:authorize="hasAuthority('ADMIN')"> </th>
+		</tr>  
+    	<tr th:each = "martialart : ${martialarts}">
+    		<td th:text="${martialart.name}"></td>
+            <td th:text="${martialart.coach.firstname + ' ' + martialart.coach.lastname}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/martialarts/edit/{id}(id=${martialart.martialart_id})}">Edit</a></td>  
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/martialarts/delete/{id}(id=${martialart.martialart_id})}" class="btn btn-danger">Delete</a></td>		
+    	</tr>
+     </table>
+      <a href="/martialarts/add" class="btn btn-success">Add Martial Art</a>      	
+</body>
+</html>

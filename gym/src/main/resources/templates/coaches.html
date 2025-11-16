@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Coaches</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Coaches</h1>
+    <table class="table table-striped">
+		<tr>
+		    <th>First Name</th>
+		    <th>Last Name</th>
+            <th sec:authorize="hasAuthority('ADMIN')"> </th>
+		</tr>  
+    	<tr th:each = "coach : ${coaches}">
+    		<td th:text="${coach.firstname}"></td>
+            <td th:text="${coach.lastname}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/coaches/edit/{id}(id=${coach.coach_id})}">Edit</a></td>  
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/coaches/delete/{id}(id=${coach.coach_id})}" class="btn btn-danger">Delete</a></td>		
+    	</tr>
+     </table>
+      <a href="/coaches/add" class="btn btn-success">Add Coach</a>      	
+</body>
+</html>

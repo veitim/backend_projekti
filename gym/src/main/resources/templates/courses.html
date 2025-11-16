@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Courses</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Courses</h1>
+    <table class="table table-striped">
+		<tr>
+		    <th>Name</th>
+		    <th>Period</th>
+            <th>Price</th>
+            <th>Coaches</th>
+            <th>Customers</th>
+            <th sec:authorize="hasAuthority('ADMIN')"> </th>
+		</tr>  
+    	<tr th:each = "course : ${courses}">
+    		<td th:text="${course.name}"></td>
+            <td th:text="${course.period}"></td>
+            <td th:text="${course.price.euros}"></td>
+            <a th:href="@{/coaches/}">Coaches</a>
+            <a th:href="@{/customerscourse/{id}(id=${customercourse.customercourse_id})}">Customers</a>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/courses/edit/{id}(id=${coach.coach_id})}">Edit</a></td>  
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/courses/delete/{id}(id=${coach.coach_id})}" class="btn btn-danger">Delete</a></td>		
+    	</tr>
+     </table>
+      <a href="/courses/add" class="btn btn-success">Add Coach</a>      	
+</body>
+</html>
