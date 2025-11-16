@@ -25,8 +25,8 @@ public class Price {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "price", nullable = false)
-    private double price;
+    @Column(name = "unitprice", nullable = false)
+    private double unitprice;
 
     @JsonIgnoreProperties("price")
     @OneToMany(cascade= CascadeType.ALL, mappedBy= "price")
@@ -35,9 +35,9 @@ public class Price {
     public Price() {
     }
 
-    public Price(String name, double price) {
+    public Price(String name, double unitprice) {
         this.name = name;
-        this.price = price;
+        this.unitprice = unitprice;
     }
 
     public Long getPrice_id() {
@@ -56,12 +56,12 @@ public class Price {
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
+    public double getUnitprice() {
+        return unitprice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setUnitprice(double unitprice) {
+        this.unitprice = unitprice;
     }
 
     public List<Course> getCourses() {
@@ -74,7 +74,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return "Price [price_id=" + price_id + ", name=" + name + ", price=" + price + "]";
+        return "Price [price_id=" + price_id + ", name=" + name + ", unitprice=" + unitprice + "]";
     }
 
 }

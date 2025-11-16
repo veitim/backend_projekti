@@ -2,31 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org"  
         xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
-    <title>Coaches</title>
+    <title>Prices</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Coaches</h1>
+	<h1>Prices</h1>
     <div>
         <a href="/martialarts" class="btn btn-success">Martial Arts</a>
+        <a href="/coaches" class="btn btn-success">Coaches</a>
         <a href="/courses" class="btn btn-success">Courses</a>
         <a href="/customers" class="btn btn-success">Customers</a>
-        <a href="/prices" class="btn btn-success">Prices</a>
     </div>
     <table class="table table-striped">
 		<tr>
-		    <th>First Name</th>
-		    <th>Last Name</th>
+		    <th>Name</th>
+		    <th>Price</th>
             <th sec:authorize="hasAuthority('ADMIN')"> </th>
 		</tr>  
-    	<tr th:each = "coach : ${coaches}">
-    		<td th:text="${coach.firstname}"></td>
-            <td th:text="${coach.lastname}"></td>
-            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/coaches/edit/{id}(id=${coach.coach_id})}">Edit</a></td>  
-            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/coaches/delete/{id}(id=${coach.coach_id})}" class="btn btn-danger">Delete</a></td>		
+    	<tr th:each = "price : ${prices}">
+    		<td th:text="${price.name}"></td>
+            <td th:text="${price.unitprice + ' €'}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/prices/edit/{id}(id=${price.price_id})}">Edit</a></td>  
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/prices/delete/{id}(id=${price.price_id})}" class="btn btn-danger">Delete</a></td>		
     	</tr>
      </table>
-      <a href="/coaches/add" class="btn btn-success">Add Coach</a>      	
+      <a href="/prices/add" class="btn btn-success">Add Price</a>      	
 </body>
 </html>

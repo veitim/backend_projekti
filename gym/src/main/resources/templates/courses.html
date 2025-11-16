@@ -8,6 +8,12 @@
 </head>
 <body>
 	<h1>Courses</h1>
+    <div>
+        <a href="/martialarts" class="btn btn-success">Martial Arts</a>
+        <a href="/coaches" class="btn btn-success">Coaches</a>
+        <a href="/customers" class="btn btn-success">Customers</a>
+        <a href="/prices" class="btn btn-success">Prices</a>
+    </div>
     <table class="table table-striped">
 		<tr>
 		    <th>Name</th>
@@ -23,10 +29,10 @@
             <td th:text="${course.price.euros}"></td>
             <a th:href="@{/coaches/}">Coaches</a>
             <a th:href="@{/customerscourse/{id}(id=${customercourse.customercourse_id})}">Customers</a>
-            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/courses/edit/{id}(id=${coach.coach_id})}">Edit</a></td>  
-            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/courses/delete/{id}(id=${coach.coach_id})}" class="btn btn-danger">Delete</a></td>		
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/courses/edit/{id}(id=${course.course_id})}">Edit</a></td>  
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/courses/delete/{id}(id=${course.course_id})}" class="btn btn-danger">Delete</a></td>		
     	</tr>
      </table>
-      <a href="/courses/add" class="btn btn-success">Add Coach</a>      	
+      <a href="/courses/add" class="btn btn-success">Add Course</a>      	
 </body>
 </html>

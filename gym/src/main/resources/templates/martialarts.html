@@ -8,6 +8,12 @@
 </head>
 <body>
 	<h1>Martial Arts</h1>
+    <div>
+        <a href="/courses" class="btn btn-success">Courses</a>
+        <a href="/coaches" class="btn btn-success">Coaches</a>
+        <a href="/customers" class="btn btn-success">Customers</a>
+        <a href="/prices" class="btn btn-success">Prices</a>
+    </div>
     <table class="table table-striped">
 		<tr>
 		    <th>Name</th>
@@ -21,6 +27,7 @@
             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/martialarts/delete/{id}(id=${martialart.martialart_id})}" class="btn btn-danger">Delete</a></td>		
     	</tr>
      </table>
-      <a href="/martialarts/add" class="btn btn-success">Add Martial Art</a>      	
+      <a href="/martialarts/add" class="btn btn-success">Add Martial Art</a>
+	
 </body>
 </html>

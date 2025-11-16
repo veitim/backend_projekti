@@ -47,8 +47,8 @@ public class GymApplication {
 			maRepository.save(art1);
 
 			log.info("save a couple of customers");
-			Customer customer1 = new Customer("Onnellinen", "Maksaja", "email@email", "polku 123");
-			Customer customer2 = new Customer("Surullinen", "Valittaja", "SP@email", "katu 123");
+			Customer customer1 = new Customer("Onnellinen", "Maksaja", "email@email.com", "polku 123");
+			Customer customer2 = new Customer("Surullinen", "Valittaja", "SP@email.com", "katu 123");
 			
 			cuRepository.save(customer1);
 			cuRepository.save(customer2);

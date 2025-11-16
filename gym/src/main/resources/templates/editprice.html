@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Price</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Edit Price</h1>
+	<div>
+		<form th:object="${price}" th:action="@{../save}" action="#" method="post">
+            <input type="hidden" id="price_id" th:field="*{price_id}" />
+		  	<label for="name">Name</label>
+			<input type="text" id="name" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+		  	<label for="unitprice">Price</label>
+			<input type="number" id="unitprice" th:field="*{unitprice}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>
