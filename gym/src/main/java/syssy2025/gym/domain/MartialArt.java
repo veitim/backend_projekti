@@ -16,6 +16,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "MartialArtTable")
@@ -27,6 +28,7 @@ public class MartialArt {
     private Long martialart_id;
 
     @NotBlank(message = "Martial Art needs a name")
+    @Size(min=3, max=30)
     @Column(name = "name", nullable = false)
     private String name;
 

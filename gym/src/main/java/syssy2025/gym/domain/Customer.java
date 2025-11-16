@@ -11,6 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -22,16 +24,24 @@ public class Customer {
     @Column(name = "customer_id", nullable = false, updatable = false)
     private Long customer_id;
 
+    @NotBlank
+    @Size(min=3, max=30)
     @Column(name = "firstname", nullable = false)
     private String firstname;
 
+    @NotBlank
+    @Size(min=3, max=30)
     @Column(name = "lastname", nullable = false)
     private String lastname;
 
+    @NotBlank
+    @Size(min=3, max=50)
     @Email(message = "Bad email address")
     @Column(name = "email")
     private String email;
 
+    @NotBlank
+    @Size(min=3, max=50)
     @Column(name = "address")
     private String address;
     
