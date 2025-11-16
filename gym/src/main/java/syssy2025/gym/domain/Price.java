@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="PriceTable")
@@ -24,9 +25,11 @@ public class Price {
     private Long price_id;
 
     @NotBlank(message = "Price type must be added")
+    @Size(min=2, max=50, message="characters 2 - 50")
     @Column(name = "name", nullable = false)
     private String name;
 
+    @NotBlank(message = "Unitprice must be added")
     @Column(name = "unitprice", nullable = false)
     private double unitprice;
 

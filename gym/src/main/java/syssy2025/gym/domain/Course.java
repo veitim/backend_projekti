@@ -27,12 +27,12 @@ public class Course {
     private Long course_id;
 
     @NotBlank(message = "Course must have a name")
-    @Size(max = 100, message = "Max characters 100")
+    @Size(min=2, max=50, message="characters 2 - 50")
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @NotBlank(message = "Period needs description")
-    @Size(max = 100, message = "Max characters 100")
+    @Size(min=2, max=50, message="characters 2 - 50")
     @Column(name = "period", nullable = false)
     private String period;
 
