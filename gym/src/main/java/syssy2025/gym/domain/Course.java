@@ -14,6 +14,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="CourseTable")
@@ -24,9 +26,13 @@ public class Course {
     @Column(name = "course_id", nullable = false, updatable = false)
     private Long course_id;
 
+    @NotBlank(message = "Course must have a name")
+    @Size(max = 100, message = "Max characters 100")
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @NotBlank(message = "Period needs description")
+    @Size(max = 100, message = "Max characters 100")
     @Column(name = "period", nullable = false)
     private String period;
 

@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="PriceTable")
@@ -22,6 +23,7 @@ public class Price {
     @Column(name = "price_id", nullable = false, updatable= false)
     private Long price_id;
 
+    @NotBlank(message = "Price type must be added")
     @Column(name = "name", nullable = false)
     private String name;
 

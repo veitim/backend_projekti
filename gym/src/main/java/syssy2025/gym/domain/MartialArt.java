@@ -14,6 +14,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "MartialArtTable")
@@ -24,9 +26,11 @@ public class MartialArt {
     @Column(name = "martialart_id", nullable = false, updatable = false)
     private Long martialart_id;
 
+    @NotBlank(message = "Martial Art needs a name")
     @Column(name = "name", nullable = false)
     private String name;
 
+    @NotNull(message = "Martial Art needs a head coach")
     @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "coach_id")

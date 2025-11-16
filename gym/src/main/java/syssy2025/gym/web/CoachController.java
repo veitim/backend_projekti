@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.validation.Valid;
 import syssy2025.gym.domain.Coach;
 import syssy2025.gym.domain.CoachRepository;
 
@@ -25,14 +27,20 @@ public class CoachController {
         return "coaches";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/add")
     public String addCoach(Model model) {
         model.addAttribute("coach", new Coach());
         return "addcoach";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
-    public String saveCoach(Coach coach) {
+    public String saveCoach(@Valid Coach coach, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("coach", coach);
+            return "addcoach";
+        }
         coaRepository.save(coach); 
         return "redirect:/coaches";
     }

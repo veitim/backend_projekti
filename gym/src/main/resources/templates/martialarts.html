@@ -8,6 +8,15 @@
 </head>
 <body>
 	<h1>Martial Arts</h1>
+    <div class="col-md-4">
+		<i>Welcome <b sec:authentication="name"></b>, 
+        your role is <b sec:authentication="principal.authorities"></b>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
     <div>
         <a href="/courses" class="btn btn-success">Courses</a>
         <a href="/coaches" class="btn btn-success">Coaches</a>
@@ -27,7 +36,7 @@
             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/martialarts/delete/{id}(id=${martialart.martialart_id})}" class="btn btn-danger">Delete</a></td>		
     	</tr>
      </table>
-      <a href="/martialarts/add" class="btn btn-success">Add Martial Art</a>
+      <a href="/martialarts/add" class="btn btn-success" sec:authorize="hasAuthority('ADMIN')">Add Martial Art</a>
 	
 </body>
 </html>

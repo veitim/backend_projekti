@@ -10,10 +10,12 @@
 	<div>
 		<form th:object="${coach}" th:action="@{save}" action="#" method="post">
 		  	<label for="firstname">First Name</label>
+			<p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></p>
 			<input type="text" id="firstname" th:field="*{firstname}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
 
 		  	<label for="lastname">Last Name</label>
+			<p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></p>
 			<input type="text" id="lastname" th:field="*{lastname}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
 

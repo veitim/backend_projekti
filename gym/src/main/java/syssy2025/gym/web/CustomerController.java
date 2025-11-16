@@ -25,12 +25,14 @@ public class CustomerController {
         return "customers";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/add")
     public String addCustomer(Model model) {
         model.addAttribute("customer", new Customer());
         return "addcustomer";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
     public String saveCustomer(Customer customer) {
         cuRepository.save(customer); 

@@ -8,6 +8,15 @@
 </head>
 <body>
 	<h1>Customers</h1>
+    <div class="col-md-4">
+		<i>Welcome <b sec:authentication="name"></b>, 
+        your role is <b sec:authentication="principal.authorities"></b>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
     <div>
         <a href="/martialarts" class="btn btn-success">Martial Arts</a>
         <a href="/courses" class="btn btn-success">Courses</a>
@@ -31,6 +40,6 @@
             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/customers/delete/{id}(id=${customer.customer_id})}" class="btn btn-danger">Delete</a></td>		
     	</tr>
      </table>
-      <a href="/customers/add" class="btn btn-success">Add Customer</a>      	
+      <a href="/customers/add" class="btn btn-success" sec:authorize="hasAuthority('ADMIN')">Add Customer</a>      	
 </body>
 </html>

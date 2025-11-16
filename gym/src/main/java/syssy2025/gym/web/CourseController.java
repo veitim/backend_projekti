@@ -26,12 +26,14 @@ public class CourseController {
         return "courses";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/add")
     public String addCourse(Model model) {
         model.addAttribute("course", new Course());
         return "addcourse";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
     public String saveCourse(Course course) {
         couRepository.save(course); 

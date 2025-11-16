@@ -29,6 +29,7 @@ public class MartialartController {
         return "martialarts";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/add")
     public String addMartialart(Model model) {
         model.addAttribute("martialart", new MartialArt());
@@ -36,6 +37,7 @@ public class MartialartController {
         return "addmartialart";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
     public String saveMartialArt(MartialArt martialart) {
         maRepository.save(martialart); 

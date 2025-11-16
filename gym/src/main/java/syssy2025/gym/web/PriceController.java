@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.validation.Valid;
 import syssy2025.gym.domain.Price;
 import syssy2025.gym.domain.PriceRepository;
 
@@ -25,29 +26,31 @@ public class PriceController {
         model.addAttribute("prices", pRepository.findAll());
         return "prices";
     }
-    
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/add")
     public String addPrice(Model model) {
         model.addAttribute("price", new Price());
         return "addprice";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
-    public String savePrice(Price price) {
+    public String savePrice(@Valid Price price) {
         pRepository.save(price); 
         return "redirect:/prices";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/delete/{id}")
-    public String deletePrice(@PathVariable("id") Long price_id, Model model) {
+    public String deletePrice(@PathVariable("id") @Valid Long price_id, Model model) {
         pRepository.deleteById(price_id);
         return "redirect:/prices";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/edit/{id}")
-    public String editPrice(@PathVariable("id") Long price_id, Model model) {
+    public String editPrice(@PathVariable("id") @Valid Long price_id, Model model) {
         model.addAttribute("price", pRepository.findById(price_id));
         return "editprice";
     }

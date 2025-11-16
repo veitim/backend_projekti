@@ -12,6 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="CoachTable")
@@ -22,9 +24,13 @@ public class Coach {
     @Column(name = "coach_id", nullable = false, updatable = false)
     private Long coach_id;
 
-    @Column(name = "firstname", nullable = false)
+    @NotBlank(message = "Coach must have first name")
+    @Size(min = 2, max = 50, message = "First name have to be 2-50 characters long")
+    @Column(name = "firstname", nullable = false, length=50)
     private String firstname;
 
+    @NotBlank(message = "Coach must have last name")
+    @Size(min = 2, max = 50, message = "Last name have to be 2-50 characters long")
     @Column(name = "lastname", nullable = false)
     private String lastname;
 

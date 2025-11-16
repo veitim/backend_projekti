@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import syssy2025.gym.domain.Coach;
 import syssy2025.gym.domain.CoachRepository;
 
@@ -40,7 +41,7 @@ public class CoachRestController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
-    public ResponseEntity<Coach> createCoachRest(@RequestBody Coach coach) {
+    public ResponseEntity<Coach> createCoachRest(@RequestBody @Valid Coach coach) {
         Coach saved = coaRepository.save(coach);
         return ResponseEntity.ok(saved);
     }
@@ -54,7 +55,7 @@ public class CoachRestController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-	public  ResponseEntity<Coach> updateCoach(@PathVariable("id") Long coach_id, @RequestBody Coach coach) {
+	public  ResponseEntity<Coach> updateCoach(@PathVariable("id") Long coach_id, @RequestBody @Valid Coach coach) {
 		coach.setCoach_id(coach_id);
 		Coach uCoach = coaRepository.save(coach);
 		return ResponseEntity.ok(uCoach);
