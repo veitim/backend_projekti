@@ -1,15 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>CustomerCourse</title>
+    <title>Course</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Edit CustomerCourse</h1>
+	<h1>Add Course</h1>
 	<div>
-		<form th:object="${customercourse}" th:action="@{../save}" action="#" method="post">
-            <input type="hidden" id="customercourse_id" th:field="*{customercourse_id}" />
+		<form th:object="${customercourse}" th:action="@{save}" action="#" method="post">
 		  	<label for="paidstatus">Paid</label>
 			<input type="checkbox" id="paidstatus" th:field="*{paidstatus}" />
 			<div style="clear: both; display: block; height: 10px;"></div>

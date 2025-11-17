@@ -8,14 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import syssy2025.gym.domain.CourseRepository;
 import syssy2025.gym.domain.CustomerCourse;
 import syssy2025.gym.domain.CustomerCourseRepository;
+import syssy2025.gym.domain.CustomerRepository;
 
 @Controller
 public class CustomerCourseController {
 
     @Autowired
     private CustomerCourseRepository cucouRepository;
+
+    @Autowired
+    private CourseRepository couRepository;
+
+    @Autowired
+    private CustomerRepository cuRepository;
 
     @GetMapping("/customercourses")
     public String customercourseList(Model model) {
@@ -35,6 +43,8 @@ public class CustomerCourseController {
     @GetMapping("/customercourses/add")
     public String addCustomerCourse(Model model) {
         model.addAttribute("customercourse", new CustomerCourse());
+        model.addAttribute("courses", couRepository.findAll());
+        model.addAttribute("customers", cuRepository.findAll());
         return "addcustomercourse";
     }
 
@@ -55,7 +65,9 @@ public class CustomerCourseController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/customercourses/edit/{id}")
     public String editCustomerCourse(@PathVariable("id") Long customercourse_id, Model model) {
-        model.addAttribute("course", cucouRepository.findById(customercourse_id));
+        model.addAttribute("customercourse", cucouRepository.findById(customercourse_id).get());
+        model.addAttribute("courses", couRepository.findAll());
+        model.addAttribute("customers", cuRepository.findAll());
         return "editcustomercourse";
     }
 }

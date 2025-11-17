@@ -30,7 +30,7 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests(
 				authorize -> authorize
 				.requestMatchers("/css/**").permitAll()
-				.requestMatchers("/api/**", "/login", "/signup").permitAll()
+				.requestMatchers("/api/**", "/login", "/signup", "/saveuser").permitAll()
 				.requestMatchers(toH2Console()).permitAll()  // for h2console
 				.anyRequest().authenticated())
 				.headers(headers -> 
