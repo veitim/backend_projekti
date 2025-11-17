@@ -42,6 +42,10 @@ public class GymApplication {
 			CustomerCourseRepository cucouRepository
 		) {
 		return (args) -> {
+			
+			if (maRepository.count() > 0) {
+            return;
+			}
 
 			log.info("save a coaches");
 			Coach coach1 = new Coach("Pekka", "Pekkanen");
