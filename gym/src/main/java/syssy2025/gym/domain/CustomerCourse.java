@@ -1,6 +1,6 @@
 package syssy2025.gym.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,11 +20,12 @@ public class CustomerCourse  {
     @Column(name = "customercourse_id", nullable = false, updatable = false)
     private Long customercourse_id;
 
+    @JsonIgnoreProperties("customercourse")
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @JsonBackReference
+    @JsonIgnoreProperties( "customercourse")
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
@@ -76,8 +77,11 @@ public class CustomerCourse  {
 
     @Override
     public String toString() {
-        return "CustomerCourse [customercourse_id=" + customercourse_id + ", customer=" + this.getCustomer() + ", course="
+        if (this.customer != null)
+            return "CustomerCourse [customercourse_id=" + customercourse_id + ", customer=" + this.getCustomer() + ", course="
                 + this.getCourse() + ", paidstatus=" + paidstatus + "]";
+        else
+            return "CustomerCourse [customercourse_id=" + customercourse_id + ", paidstatus=" + paidstatus + "]";    
     }
 
 }

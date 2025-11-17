@@ -14,7 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -26,7 +26,7 @@ public class MartialArt {
     @Column(name = "martialart_id", nullable = false, updatable = false)
     private Long martialart_id;
 
-    @NotBlank(message = "Martial Art needs a name")
+    @NotEmpty
     @Size(min=3, max=30)
     @Column(name = "name", nullable = false)
     private String name;
@@ -83,11 +83,9 @@ public class MartialArt {
     @Override
     public String toString() {
         if (this.coach != null)
-            return "MartialArt [martialart_id=" + martialart_id + ", name=" + name + ", coach=" + this.getCoach() + ", courses="
-                + courses + "]";
+            return "MartialArt [martialart_id=" + martialart_id + ", name=" + name + ", coach=" + this.getCoach() + "]";
         else
-            return "MartialArt [martialart_id=" + martialart_id + ", name=" + name + ", courses="
-                + courses + "]";
+            return "MartialArt [martialart_id=" + martialart_id + ", name=" + name + "]";
     }
 
 }

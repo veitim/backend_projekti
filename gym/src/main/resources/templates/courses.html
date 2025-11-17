@@ -21,6 +21,7 @@
         <a href="/martialarts" class="btn btn-success">Martial Arts</a>
         <a href="/customers" class="btn btn-success">Customers</a>
         <a href="/prices" class="btn btn-success">Prices</a>
+        <a href="/customercourses" class="btn btn-success">Attendees</a>
     </div>
     <table class="table table-striped">
 		<tr>
@@ -28,15 +29,13 @@
             <th>Martial Art</th>
 		    <th>Period</th>
             <th>Price</th>
-            <th>Customers</th>
             <th sec:authorize="hasAuthority('ADMIN')"> </th>
 		</tr>  
     	<tr th:each = "course : ${courses}">
     		<td th:text="${course.name}"></td>
             <td th:text="${course.martialart.name}"></td>
             <td th:text="${course.period}"></td>
-            <td th:text="${course.price.unitprice} + €"></td>
-            <td ><a th:href="@{/findcuscourse/{id}(id=${course.course_id})}">Customers</a></td>
+            <td th:text="${course.price.unitprice} + '€'"></td>
             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/courses/edit/{id}(id=${course.course_id})}">Edit</a></td>  
             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/courses/delete/{id}(id=${course.course_id})}" class="btn btn-danger">Delete</a></td>		
     	</tr>

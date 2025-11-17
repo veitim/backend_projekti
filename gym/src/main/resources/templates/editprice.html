@@ -17,7 +17,7 @@
 
 		  	<label for="unitprice">Price</label>
 			<input type="number" id="unitprice" th:field="*{unitprice}" />
-			<p th:if="${#fields.hasErrors('unitprice')}" th:errors="*{unitprice}">Name Error</p>
+			<p th:if="${#fields.hasErrors('unitprice')}" th:errors="*{unitprice}">Unitprice Error</p>
 			<div style="clear: both; display: block; height: 10px;"></div>
 
 			<input type="submit" value="Save"></input>

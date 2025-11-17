@@ -17,22 +17,29 @@
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
 		</form>
 	</div>
+    <div>
+        <a href="/martialarts" class="btn btn-success">Martial Arts</a>
+        <a href="/customers" class="btn btn-success">Customers</a>
+        <a href="/prices" class="btn btn-success">Prices</a>
+        <a href="/courses" class="btn btn-success">Courses</a>
+    </div>
     <table class="table table-striped">
 		<tr>
 		    <th>Customer</th>
 		    <th>Course</th>
+            <th>Martial Art</th>
             <th>Paid Status</th>
             <th sec:authorize="hasAuthority('ADMIN')"> </th>
 		</tr>  
     	<tr th:each = "customercourse : ${customercourses}">
     		<td th:text="${customercourse.customer.firstname + ' ' + customercourse.customer.lastname}"></td>
             <td th:text="${customercourse.course.name}"></td>
+            <td th:text="${customercourse.course.martialart.name}"></td>
             <td th:text="${customercourse.paidstatus}"></td>
             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/customercourses/edit/{id}(id=${customercourse.customercourse_id})}">Edit</a></td>  
             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/customercourses/delete/{id}(id=${customercourse.customercourse_id})}" class="btn btn-danger">Delete</a></td>		
     	</tr>
      </table>
-      <a href="/courses" class="btn btn-success">Back to Courses</a>
 	
 </body>
 </html>

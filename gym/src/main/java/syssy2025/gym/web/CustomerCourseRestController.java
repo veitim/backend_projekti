@@ -3,7 +3,6 @@ package syssy2025.gym.web;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
-import syssy2025.gym.domain.Course;
-import syssy2025.gym.domain.CourseRepository;
 import syssy2025.gym.domain.CustomerCourse;
 import syssy2025.gym.domain.CustomerCourseRepository;
 

@@ -15,8 +15,8 @@ import syssy2025.gym.domain.Course;
 import syssy2025.gym.domain.CourseRepository;
 import syssy2025.gym.domain.Customer;
 import syssy2025.gym.domain.CustomerCourse;
-import syssy2025.gym.domain.CustomerRepository;
 import syssy2025.gym.domain.CustomerCourseRepository;
+import syssy2025.gym.domain.CustomerRepository;
 import syssy2025.gym.domain.MartialArt;
 import syssy2025.gym.domain.MartialArtRepository;
 import syssy2025.gym.domain.Price;
@@ -51,7 +51,9 @@ public class GymApplication {
 
 			log.info("save a couple of lajeja");
 			MartialArt art1 = new MartialArt("boxing", coach1);
+			MartialArt art2 = new MartialArt("kickboxing", coach2);
 			maRepository.save(art1);
+			maRepository.save(art2);
 
 			log.info("save a couple of customers");
 			Customer customer1 = new Customer("Onnellinen", "Maksaja", "email@email.com", "polku 123");
@@ -84,12 +86,7 @@ public class GymApplication {
 			AppUser user1 = new AppUser("Pekka", "Pekkanen", "user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
 			AppUser user2 = new AppUser("Urpo", "Urpolainen", "admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
 			uRepository.save(user1);
-			uRepository.save(user2);
-			
-			// log.info("fetch all thingies");
-			// for (MartialArt martialart : maRepository.findAll()) {
-			// 	log.info(martialart.toString());
-			// }
+			uRepository.save(user2);		
 		};
 	}
 
