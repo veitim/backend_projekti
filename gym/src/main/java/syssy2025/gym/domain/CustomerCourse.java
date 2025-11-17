@@ -1,5 +1,7 @@
 package syssy2025.gym.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,17 +24,22 @@ public class CustomerCourse  {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
+    @Column(name = "paidstatus", nullable = false)
+    private boolean paidstatus;
+
     public CustomerCourse() {
     }
 
-    public CustomerCourse(Customer customer, Course course) {
+    public CustomerCourse(Customer customer, Course course, boolean paidstatus) {
         super();
         this.customer = customer;
         this.course = course;
+        this.paidstatus = paidstatus;
     }
 
     public Long getCustomercourse_id() {
@@ -59,10 +66,18 @@ public class CustomerCourse  {
         this.course = course;
     }
 
+    public boolean isPaidstatus() {
+        return paidstatus;
+    }
+
+    public void setPaidstatus(boolean paidstatus) {
+        this.paidstatus = paidstatus;
+    }
+
     @Override
     public String toString() {
         return "CustomerCourse [customercourse_id=" + customercourse_id + ", customer=" + this.getCustomer() + ", course="
-                + this.getCourse() + "]";
+                + this.getCourse() + ", paidstatus=" + paidstatus + "]";
     }
 
 }

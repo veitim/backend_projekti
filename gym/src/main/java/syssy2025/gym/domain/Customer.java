@@ -1,7 +1,10 @@
 package syssy2025.gym.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -45,10 +49,9 @@ public class Customer {
     @Column(name = "address")
     private String address;
     
-    @ManyToOne
     @JsonIgnoreProperties("customers")
-    @JoinColumn(name = "customercourse_id")
-    private CustomerCourse customercourse;
+    @OneToMany(mappedBy="customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CustomerCourse> customercourse;
 
     public Customer() {
     }
@@ -100,22 +103,18 @@ public class Customer {
         this.address = address;
     }
 
-    public CustomerCourse getCustomercourse() {
+    public List<CustomerCourse> getCustomercourse() {
         return customercourse;
     }
 
-    public void setCustomercourse(CustomerCourse customercourse) {
+    public void setCustomercourse(List<CustomerCourse> customercourse) {
         this.customercourse = customercourse;
     }
 
     @Override
     public String toString() {
-        if (this.customercourse != null)
             return "Customer [customer_id=" + customer_id + ", firstname=" + firstname + ", lastname=" + lastname
-                    + ", email=" + email + ", address=" + address + " customercourse =" + this.getCustomercourse() + "]";
-        else
-            return "Customer [customer_id=" + customer_id + ", firstname=" + firstname + ", lastname=" + lastname
-                    + ", email=" + email + ", address=" + address + "]";
+                    + ", email=" + email + ", address=" + address +  "]";
     }
 
 }

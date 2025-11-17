@@ -29,7 +29,6 @@ public class Price {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotBlank(message = "Unitprice must be added")
     @Column(name = "unitprice", nullable = false)
     private double unitprice;
 

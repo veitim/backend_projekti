@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import syssy2025.gym.domain.Course;
 import syssy2025.gym.domain.CourseRepository;
+import syssy2025.gym.domain.MartialArtRepository;
+import syssy2025.gym.domain.PriceRepository;
 
 
 @Controller
@@ -19,6 +21,12 @@ public class CourseController {
 
     @Autowired
     private CourseRepository couRepository;
+
+    @Autowired
+    private MartialArtRepository maRepository;
+
+    @Autowired
+    private PriceRepository pRepository;
 
     @GetMapping
     public String courseList(Model model) {
@@ -30,6 +38,8 @@ public class CourseController {
     @GetMapping("/add")
     public String addCourse(Model model) {
         model.addAttribute("course", new Course());
+        model.addAttribute("martialarts", maRepository.findAll());
+        model.addAttribute("prices", pRepository.findAll());
         return "addcourse";
     }
     
@@ -51,6 +61,8 @@ public class CourseController {
     @GetMapping("/edit/{id}")
     public String editCourse(@PathVariable("id") Long course_id, Model model) {
         model.addAttribute("course", couRepository.findById(course_id));
+        model.addAttribute("martialarts", maRepository.findAll());
+        model.addAttribute("prices", pRepository.findAll());
         return "editcourse";
     }
 }

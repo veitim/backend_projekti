@@ -54,7 +54,7 @@ public class CourseRestController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-	public  ResponseEntity<Course> updateCoach(@PathVariable("id") Long course_id, @RequestBody Course course) {
+	public ResponseEntity<Course> updateCourse(@PathVariable("id") Long course_id, @RequestBody Course course) {
 		course.setCourse_id(course_id);
 		Course uCourse = couRepository.save(course);
 		return ResponseEntity.ok(uCourse);

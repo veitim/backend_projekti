@@ -3,6 +3,7 @@ package syssy2025.gym.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -32,7 +33,7 @@ public class Course {
     private String name;
 
     @NotBlank(message = "Period needs description")
-    @Size(min=2, max=50, message="characters 2 - 50")
+    @Size(min=2, max=150, message="characters 2 - 150")
     @Column(name = "period", nullable = false)
     private String period;
 
@@ -46,7 +47,8 @@ public class Course {
     @JoinColumn(name = "martialart_id")
     private MartialArt martialart;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course", orphanRemoval = true)
     private List<CustomerCourse> customercourse;
 
     public Course() {
@@ -109,8 +111,12 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course [course_id=" + course_id + ", name=" + name + ", period=" + period + ", price=" + price
-                + ", martialart=" + martialart + "]";
+        if (this.martialart != null)
+            return "Course [course_id=" + course_id + ", name=" + name + ", period=" + period + ", price=" + price
+                + ", martialart=" + this.getMartialart() + "]";
+        else
+            return "Course [course_id=" + course_id + ", name=" + name + ", period=" + period + ", price=" + price
+                + "]";
     }    
 
     

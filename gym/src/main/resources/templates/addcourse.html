@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Course</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Add Course</h1>
+	<div>
+		<form th:object="${course}" th:action="@{save}" action="#" method="post">
+		  	<label for="name">Name</label>
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+			<input type="text" id="name" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+		  	<label for="period">Period</label>
+			<p th:if="${#fields.hasErrors('period')}" th:errors="*{period}"></p>
+			<input type="text" id="period" th:field="*{period}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+            <div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="pricelist">Price</label>
+			 <select id="pricelist" th:field="*{price}" class="form-control">
+       			<option th:each="price: ${prices}" th:value="${price.price_id}" th:text="${price.name + ': ' + price.unitprice}"></option>
+    		</select>
+
+            <div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="martialartlist">Martial Art</label>
+			 <select id="martialartlist" th:field="*{martialart}" class="form-control">
+       			<option th:each="martialart: ${martialarts}" th:value="${martialart.martialart_id}" th:text="${martialart.name}"></option>
+    		</select>
+
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>
