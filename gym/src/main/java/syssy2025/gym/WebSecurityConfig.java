@@ -31,18 +31,18 @@ public class WebSecurityConfig {
 				authorize -> authorize
 				.requestMatchers("/css/**").permitAll()
 				.requestMatchers("/api/**", "/login", "/signup", "/saveuser").permitAll()
-				.requestMatchers(toH2Console()).permitAll()  // for h2console
+				// .requestMatchers(toH2Console()).permitAll()  // for h2console
 				.anyRequest().authenticated())
-				.headers(headers -> 
-					headers.frameOptions(frameOptions -> frameOptions 
-						.disable()))   // for h2console
+				// .headers(headers -> 
+				// 	headers.frameOptions(frameOptions -> frameOptions 
+				// 		.disable()))   // for h2console
 				.formLogin(formlogin -> 
 					formlogin.loginPage("/login")
 					.defaultSuccessUrl("/martialarts", true)
 					.permitAll())
 				.logout(logout -> logout.permitAll())
-				.csrf(csrf -> 
-					csrf.ignoringRequestMatchers("/api/**")) // for h2console, not for production, just for development
+				// .csrf(csrf -> 
+				// 	csrf.ignoringRequestMatchers("/api/**")) // for h2console, not for production, just for development
 				.httpBasic(Customizer.withDefaults());
 		return http.build();
 	}
